@@ -25,7 +25,7 @@ function M.save_data()
 end
 
 function M.update()
-    M.total = M.total + (os.difftime(os.time(), M.loaded_time))
+    M.data.total = M.data.total + (os.difftime(os.time(), M.loaded_time))
     if not M.dormant then
         M.data.active = M.data.active + (os.difftime(os.time(), M.last_active))
     end
