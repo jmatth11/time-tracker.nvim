@@ -1,4 +1,5 @@
 local proc = require("time-tracker.procedure")
+local ui = require("time-tracker.ui")
 
 local namespace = "time-tracker.nvim.namespace"
 local autogroup = "time-tracker.nvim.group"
@@ -11,6 +12,10 @@ local main_proc = proc:new()
 -- Inspect the time info for debug purposes.
 function M.time_info_debug()
     print(vim.inspect(main_proc:time_info()))
+end
+
+function M.time_info()
+    ui.toggle_window(main_proc:time_info())
 end
 
 -- Force an update

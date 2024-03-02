@@ -46,8 +46,43 @@ local function create_window()
     )
     return {
         bufnr = bufnr,
-        win_id = win_id,
+        win_id = win_id
     }
+end
+
+function M.format_time_info(info, sep)
+    local result = ""
+    if info.yr > 0 then
+        result = result .. string.format("yr: %f" .. sep, info.yr)
+    end
+    if info.week > 0 then
+        result = result .. string.format("week: %f" .. sep, info.week)
+    end
+    if info.day > 0 then
+        result = result .. string.format("day: %f" .. sep, info.day)
+    end
+    if info.hr > 0 then
+        result = result .. string.format("hr: %f" .. sep, info.hr)
+    end
+    if info.min > 0 then
+        result = result .. string.format("min: %f" .. sep, info.min)
+    end
+    if info.sec > 0 then
+        result = result .. string.format("sec: %f" .. sep, info.sec)
+    end
+end
+
+function M.format_contents(time_info, opts)
+    local sep = " "
+    if opts ~= nil then
+        if opts["sep"] ~= nil then
+            sep = opts.sep
+        end
+    end
+    local contents = {}
+    table.insert(contents, string.format("Total Time: %s", M.format_time_info(time_info.total, sep)))
+    table.insert(contents, string.format("Active Time: %s", M.format_time_info(time_info.active, sep)))
+    return contents
 end
 
 function M.toggle_window(time_info)
@@ -55,8 +90,13 @@ function M.toggle_window(time_info)
         vim.api.nvim_win_close(tracker_win_id, true)
         tracker_win_id = nil
         tracker_bufnr = nil
+        return
     end
     local window = create_window()
+    local contents = M.format_time_info(time_info)
+    if contents == nil then
+        contents = {}
+    end
     tracker_win_id = window.win_id
     tracker_bufnr = window.bufnr
     vim.api.nvim_buf_set_keymap(
@@ -73,7 +113,6 @@ function M.toggle_window(time_info)
         "<Cmd>lua require('time-tracker').toggle_window()<CR>",
         { silent = true }
     )
-    -- TODO set contents to time info
     vim.api.nvim_buf_set_lines(tracker_bufnr, 0, #contents, false, contents)
 end
 
