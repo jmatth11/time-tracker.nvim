@@ -1,4 +1,5 @@
 local tracker = require("time-tracker.tracker")
+local time = require("time-tracker.time")
 local M = {}
 
 -- timer delay set to 5 minute
@@ -17,7 +18,22 @@ function M:debounce_timer()
         self.timer:stop()
     end
     -- (re)create and start timer
-    self.timer = vim.defer_fn(tracker.set_inactive, self.timer_delay)
+    self.timer = vim.defer_fn(function()
+        tracker.set_inactive()
+        vim.notify("inactive")
+    end, self.timer_delay)
+end
+
+function M:time_info()
+    return {
+        total = time.extract_time_info(tracker.data.total),
+        active = time.extract_time_info(tracker.data.active),
+    }
+end
+
+function M:update()
+    tracker.update()
+    tracker.save_data()
 end
 
 return M
