@@ -21,8 +21,8 @@ require("time-tracker").setup()
 
 ## TODOs
 
-- [ ] Incorporate plenary to display time info.
 - [ ] Display time info in a useful format.
+- [ ] Incorporate plenary to display time info.
 - [ ] Add ability to track activity per file.
 
 ## License
