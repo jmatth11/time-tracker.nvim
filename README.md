@@ -19,6 +19,12 @@ Inside you main lua file (or an init file) place this piece of code to accept al
 require("time-tracker").setup()
 ```
 
+Currently I haven't implemented displaying the time info in a great format so it can be displayed in a debug format.
+
+```lua
+require("time-tracker").time_info_debug()
+```
+
 ## TODOs
 
 - [ ] Display time info in a useful format.
