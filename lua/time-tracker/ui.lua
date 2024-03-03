@@ -25,11 +25,6 @@ local function create_window()
         {win = win.border.win_id}
     )
     vim.api.nvim_set_option_value(
-        "readonly",
-        true,
-        {buf = bufnr}
-    )
-    vim.api.nvim_set_option_value(
         "filetype",
         "time-tracker",
         {buf = bufnr}
@@ -52,25 +47,25 @@ end
 
 function M.format_time_info(info, sep)
     local result = ""
-    print(vim.inspect(info))
     if info.yr > 0 then
-        result = result .. string.format("yr: %f" .. sep, info.yr)
+        result = result .. string.format("yr: %d" .. sep, math.floor(info.yr))
     end
     if info.week > 0 then
-        result = result .. string.format("week: %f" .. sep, info.week)
+        result = result .. string.format("week: %d" .. sep, math.floor(info.week) % 52)
     end
     if info.day > 0 then
-        result = result .. string.format("day: %f" .. sep, info.day)
+        result = result .. string.format("day: %d" .. sep, math.floor(info.day) % 7)
     end
     if info.hr > 0 then
-        result = result .. string.format("hr: %f" .. sep, info.hr)
+        result = result .. string.format("hr: %d" .. sep, math.floor(info.hr) % 24)
     end
     if info.min > 0 then
-        result = result .. string.format("min: %f" .. sep, info.min)
+        result = result .. string.format("min: %d" .. sep, math.floor(info.min) % 60)
     end
     if info.sec > 0 then
-        result = result .. string.format("sec: %f" .. sep, info.sec)
+        result = result .. string.format("sec: %d" .. sep, math.floor(info.sec) % 60)
     end
+    return result
 end
 
 function M.format_contents(time_info, opts)
@@ -104,17 +99,22 @@ function M.toggle_window(time_info)
         tracker_bufnr,
         "n",
         "q",
-        "<Cmd>lua require('time-tracker').toggle_window()<CR>",
+        "<Cmd>lua require('time-tracker').time_info()<CR>",
         { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         tracker_bufnr,
         "n",
         "<ESC>",
-        "<Cmd>lua require('time-tracker').toggle_window()<CR>",
+        "<Cmd>lua require('time-tracker').time_info()<CR>",
         { silent = true }
     )
     vim.api.nvim_buf_set_lines(tracker_bufnr, 0, #contents, false, contents)
+    vim.api.nvim_set_option_value(
+        "readonly",
+        true,
+        {buf = tracker_bufnr}
+    )
 end
 
 return M
