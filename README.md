@@ -25,10 +25,10 @@ For setting custom active timer delay (delay is in seconds):
 require("time-tracker").setup({timer_delay = 5000})
 ```
 
-Currently I haven't implemented displaying the time info in a great format so it can be displayed in a debug format.
+To toggle the display of the time info panel.
 
 ```lua
-require("time-tracker").time_info_debug()
+require("time-tracker").time_info()
 ```
 
 ## Preview
