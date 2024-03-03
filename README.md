@@ -40,8 +40,6 @@ https://github.com/jmatth11/time-tracker.nvim/assets/5776125/19dad0c9-bdb6-4b30-
 
 ## TODOs
 
-- [ ] Display time info in a useful format.
-- [ ] Incorporate plenary to display time info.
 - [ ] Add ability to track activity per file.
 
 ## License
