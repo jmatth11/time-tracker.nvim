@@ -2,7 +2,7 @@
 
 This is a simple plugin for tracking time inside of neovim.
 
-Currently it tracks total and active time. The active status is flipped after 2 minutes of no key presses.
+Currently it tracks overall total and active time and the current day's total and active time. The active status is flipped after 2 minutes of no key presses.
 
 ## Install
 
