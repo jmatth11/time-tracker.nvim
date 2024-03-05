@@ -8,6 +8,9 @@ Currently it tracks overall total and active time and the current day's total an
 
 packer:
 ```lua
+-- plenary is a used so is currently a requirement
+use("nvim-lua/plenary.nvim")
+
 use("jmatth11/time-tracker.nvim")
 ```
 
