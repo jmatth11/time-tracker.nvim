@@ -84,6 +84,8 @@ function M.format_contents(time_info, opts)
     local contents = {}
     table.insert(contents, string.format("Total Time: %s", M.format_time_info(time_info.total, sep)))
     table.insert(contents, string.format("Active Time: %s", M.format_time_info(time_info.active, sep)))
+    table.insert(contents, string.format("Today's Total Time: %s", M.format_time_info(time_info.today.total, sep)))
+    table.insert(contents, string.format("Today's Active Time: %s", M.format_time_info(time_info.today.active, sep)))
     return contents
 end
 
