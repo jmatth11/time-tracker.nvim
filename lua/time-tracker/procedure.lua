@@ -39,6 +39,10 @@ function M:time_info()
     return {
         total = time.extract_time_info(tracker.data.total),
         active = time.extract_time_info(tracker.data.active),
+        today = {
+            total = time.extract_time_info(tracker.data.today.total),
+            active = time.extract_time_info(tracker.data.today.active),
+        }
     }
 end
 
