@@ -37,9 +37,7 @@ require("time-tracker").time_info()
 
 ## Preview
 
-
-https://github.com/jmatth11/time-tracker.nvim/assets/5776125/19dad0c9-bdb6-4b30-a6da-840c7c681a1b
-
+https://github.com/jmatth11/time-tracker.nvim/assets/5776125/5e5fdec5-6e74-4074-b282-1beaf310ee2d
 
 ## TODOs
 
