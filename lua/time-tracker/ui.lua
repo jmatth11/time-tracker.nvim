@@ -45,8 +45,7 @@ local function create_window()
     }
 end
 
-function M.format_time_info(info, sep)
-    local result = ""
+function M.format_time_info(result, info)
     local yr = math.floor(info.yr)
     local week = math.floor(info.week)
     local day = math.floor(info.day)
@@ -54,38 +53,36 @@ function M.format_time_info(info, sep)
     local min = math.floor(info.min)
     local sec = math.floor(info.sec)
     if yr > 0 then
-        result = result .. string.format("yr: %d" .. sep, yr)
+        table.insert(result, string.format("\tyr: %d", yr))
     end
     if week > 0 then
-        result = result .. string.format("week: %d" .. sep, week % 52)
+        table.insert(result, string.format("\tweek: %d" .. sep, week % 52))
     end
     if day > 0 then
-        result = result .. string.format("day: %d" .. sep, day % 7)
+        table.insert(result, string.format("\tday: %d" .. sep, day % 7))
     end
     if hr > 0 then
-        result = result .. string.format("hr: %d" .. sep, hr % 24)
+        table.insert(result, string.format("\thr: %d" .. sep, hr % 24))
     end
     if min > 0 then
-        result = result .. string.format("min: %d" .. sep, min % 60)
+        table.insert(result, string.format("\tmin: %d" .. sep, min % 60))
     end
     if sec > 0 then
-        result = result .. string.format("sec: %d" .. sep, sec % 60)
+        table.insert(result, string.format("\tsec: %d" .. sep, sec % 60))
     end
     return result
 end
 
 function M.format_contents(time_info, opts)
-    local sep = " "
-    if opts ~= nil then
-        if opts["sep"] ~= nil then
-            sep = opts.sep
-        end
-    end
     local contents = {}
-    table.insert(contents, string.format("Total Time: %s", M.format_time_info(time_info.total, sep)))
-    table.insert(contents, string.format("Active Time: %s", M.format_time_info(time_info.active, sep)))
-    table.insert(contents, string.format("Today's Total Time: %s", M.format_time_info(time_info.today.total, sep)))
-    table.insert(contents, string.format("Today's Active Time: %s", M.format_time_info(time_info.today.active, sep)))
+    table.insert(contents, "Total Time:")
+    contents = M.format_time_info(contents, time_info.total)
+    table.insert(contents, "Active Time:")
+    contents = M.format_time_info(contents, time_info.active)
+    table.insert(contents, "Today's Total Time:")
+    contents = M.format_time_info(contents, time_info.today.total)
+    table.insert(contents, "Today's Active Time:")
+    contents = M.format_time_info(contents, time_info.today.active)
     return contents
 end
 
@@ -117,10 +114,22 @@ function M.toggle_window(time_info)
         "<Cmd>lua require('time-tracker').time_info()<CR>",
         { silent = true }
     )
+    vim.api.nvim_buf_set_keymap(
+        tracker_bufnr,
+        "n",
+        "<ENTER>",
+        "<Cmd>za<CR>",
+        { silent = true }
+    )
     vim.api.nvim_buf_set_lines(tracker_bufnr, 0, #contents, false, contents)
     vim.api.nvim_set_option_value(
         "readonly",
         true,
+        {buf = tracker_bufnr}
+    )
+    vim.api.nvim_set_option_value(
+        "foldmethod",
+        "indent",
         {buf = tracker_bufnr}
     )
 end
