@@ -10,7 +10,7 @@ local M = {
         total = 0,
         active = 0,
         today = {
-            initial_time = loaded_time(),
+            initial_time = loaded_time,
             total = 0,
             active = 0,
         }
