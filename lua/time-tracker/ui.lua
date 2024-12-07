@@ -132,6 +132,11 @@ function M.toggle_window(time_info)
         "indent",
         {win = tracker_win_id}
     )
+    vim.api.nvim_set_option_value(
+        "foldlevel",
+        0,
+        {win = tracker_win_id}
+    )
 end
 
 return M
