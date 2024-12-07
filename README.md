@@ -19,10 +19,10 @@ Inside you main lua file (or an init file) place this piece of code to accept al
 require("time-tracker").setup()
 ```
 
-For setting custom active timer delay (delay is in seconds):
+For setting custom active timer delay (delay is in milliseconds):
 
 ```lua
-require("time-tracker").setup({timer_delay = 5000})
+require("time-tracker").setup({timer_delay = 1000 * 5 })
 ```
 
 To toggle the display of the time info panel.
