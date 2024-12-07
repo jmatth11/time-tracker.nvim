@@ -1,13 +1,11 @@
-local time = require("nvim-time-tracker.time")
+local time = require("time-tracker.nvim.time")
+local tracker = require("time-tracker.nvim.time")
 
-local start_time = os.time()
+local M = {}
 
-local function get_time_diff()
-    local current_time = os.time()
-    local time_info = time.extract_time_info(os.difftime(current_time, start_time))
-    print(vim.inspect(time_info))
-end
+vim.on_key(function()
 
-return {
-    get_time_diff = get_time_diff
-}
+end,
+0)
+
+return M
