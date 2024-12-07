@@ -56,19 +56,19 @@ function M.format_time_info(result, info)
         table.insert(result, string.format("\tyr: %d", yr))
     end
     if week > 0 then
-        table.insert(result, string.format("\tweek: %d" .. sep, week % 52))
+        table.insert(result, string.format("\tweek: %d", week % 52))
     end
     if day > 0 then
-        table.insert(result, string.format("\tday: %d" .. sep, day % 7))
+        table.insert(result, string.format("\tday: %d", day % 7))
     end
     if hr > 0 then
-        table.insert(result, string.format("\thr: %d" .. sep, hr % 24))
+        table.insert(result, string.format("\thr: %d", hr % 24))
     end
     if min > 0 then
-        table.insert(result, string.format("\tmin: %d" .. sep, min % 60))
+        table.insert(result, string.format("\tmin: %d", min % 60))
     end
     if sec > 0 then
-        table.insert(result, string.format("\tsec: %d" .. sep, sec % 60))
+        table.insert(result, string.format("\tsec: %d", sec % 60))
     end
     return result
 end
