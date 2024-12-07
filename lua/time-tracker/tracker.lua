@@ -15,7 +15,7 @@ local M = {
             active = 0,
         }
     },
-    loaded_time = loaded_time,
+    last_total = loaded_time,
     last_active = loaded_time,
     dormant = false,
 }
@@ -56,12 +56,16 @@ end
 
 -- Update time info values.
 function M.update()
-    M.data.total = M.data.total + (os.difftime(os.time(), M.loaded_time))
-    M.data.today.total = M.data.today.total + (os.difftime(os.time(), M.loaded_time))
+    local now = os.time()
+    M.data.total = M.data.total + (os.difftime(now, M.last_total))
+    M.data.today.total = M.data.today.total + (os.difftime(now, M.last_total))
     if not M.dormant then
-        M.data.active = M.data.active + (os.difftime(os.time(), M.last_active))
-        M.data.today.active = M.data.today.active + (os.difftime(os.time(), M.last_active))
+        M.data.active = M.data.active + (os.difftime(now, M.last_active))
+        M.data.today.active = M.data.today.active + (os.difftime(now, M.last_active))
     end
+    -- set times to new "last updated"
+    M.last_total = now
+    M.last_active = now
 end
 
 -- Set the active status and set last active.
