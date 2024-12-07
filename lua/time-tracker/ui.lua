@@ -47,23 +47,29 @@ end
 
 function M.format_time_info(info, sep)
     local result = ""
-    if info.yr > 0 then
-        result = result .. string.format("yr: %d" .. sep, math.floor(info.yr))
+    local yr = math.floor(info.yr)
+    local week = math.floor(info.week)
+    local day = math.floor(info.day)
+    local hr = math.floor(info.hr)
+    local min = math.floor(info.min)
+    local sec = math.floor(info.sec)
+    if yr > 0 then
+        result = result .. string.format("yr: %d" .. sep, yr)
     end
-    if info.week > 0 then
-        result = result .. string.format("week: %d" .. sep, math.floor(info.week) % 52)
+    if week > 0 then
+        result = result .. string.format("week: %d" .. sep, week % 52)
     end
-    if info.day > 0 then
-        result = result .. string.format("day: %d" .. sep, math.floor(info.day) % 7)
+    if day > 0 then
+        result = result .. string.format("day: %d" .. sep, day % 7)
     end
-    if info.hr > 0 then
-        result = result .. string.format("hr: %d" .. sep, math.floor(info.hr) % 24)
+    if hr > 0 then
+        result = result .. string.format("hr: %d" .. sep, hr % 24)
     end
-    if info.min > 0 then
-        result = result .. string.format("min: %d" .. sep, math.floor(info.min) % 60)
+    if min > 0 then
+        result = result .. string.format("min: %d" .. sep, min % 60)
     end
-    if info.sec > 0 then
-        result = result .. string.format("sec: %d" .. sep, math.floor(info.sec) % 60)
+    if sec > 0 then
+        result = result .. string.format("sec: %d" .. sep, sec % 60)
     end
     return result
 end
