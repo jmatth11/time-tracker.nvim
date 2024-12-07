@@ -42,9 +42,6 @@ https://github.com/jmatth11/time-tracker.nvim/assets/5776125/5e5fdec5-6e74-4074-
 ## TODOs
 
 - [ ] Add ability to track activity per file.
-- [ ] Make UI prettier
-  - [ ] Make time info on an indented line under each section
-  - [ ] Add foldable sections for readability
 
 ## License
 
