@@ -30,7 +30,7 @@ function M.write_to_tracker_file(obj)
     end
 end
 
-function M.rend_tracker_file()
+function M.read_tracker_file()
     local f = M.grab_or_create_file()
     if f ~= nil then
         local data = f:read("*a")
