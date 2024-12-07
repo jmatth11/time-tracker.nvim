@@ -22,7 +22,7 @@ function M.grab_or_create_file()
     if f ~= nil then
         return f
     else
-        vim.notify("could not open data file for nvim-time-tracker", vim.log.levels.ERROR)
+        vim.notify("could not open data file for time-tracker.nvim", vim.log.levels.ERROR)
     end
 end
 
