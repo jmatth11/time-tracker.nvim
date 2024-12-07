@@ -1,4 +1,4 @@
-local proc = require("time-tracker.nvim.procedure")
+local proc = require("time-tracker.procedure")
 
 local M = {
     nid = vim.api.nvim_create_namespace("time-tracker.nvim.namespace")

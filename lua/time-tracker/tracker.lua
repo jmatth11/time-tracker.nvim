@@ -1,4 +1,4 @@
-local file = require("time-tracker.nvim.file")
+local file = require("time-tracker.file")
 
 local loaded_time = os.time()
 
