@@ -21,18 +21,20 @@ local M = {
 }
 
 local function compare_date(d1, d2)
+    d1 = os.date("*t", d1)
     return d1.day == d2.day and d1.month == d2.month and d1.year == d2.year
 end
 
 local function check_today_tracker(today)
-    local time = os.date()
+    local time = os.time()
+    local now = os.date("*t", time)
     local obj = today or {
         initial_time = time,
         total = 0,
         active = 0,
     }
     -- reset day if it's a different day
-    if not compare_date(obj.initial_time, time) then
+    if not compare_date(obj.initial_time, now) then
         obj.initial_time = time
         obj.total = 0
         obj.active = 0
