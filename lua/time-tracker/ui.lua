@@ -118,7 +118,7 @@ function M.toggle_window(time_info)
         tracker_bufnr,
         "n",
         "<ENTER>",
-        "<Cmd>za<CR>",
+        "za",
         { silent = true }
     )
     vim.api.nvim_buf_set_lines(tracker_bufnr, 0, #contents, false, contents)
@@ -130,7 +130,7 @@ function M.toggle_window(time_info)
     vim.api.nvim_set_option_value(
         "foldmethod",
         "indent",
-        {buf = tracker_bufnr}
+        {win = tracker_win_id}
     )
 end
 
