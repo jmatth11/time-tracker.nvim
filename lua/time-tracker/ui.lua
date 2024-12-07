@@ -52,6 +52,7 @@ end
 
 function M.format_time_info(info, sep)
     local result = ""
+    print(vim.inspect(info))
     if info.yr > 0 then
         result = result .. string.format("yr: %f" .. sep, info.yr)
     end
@@ -93,7 +94,7 @@ function M.toggle_window(time_info)
         return
     end
     local window = create_window()
-    local contents = M.format_time_info(time_info)
+    local contents = M.format_contents(time_info)
     if contents == nil then
         contents = {}
     end
