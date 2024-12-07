@@ -1,11 +1,13 @@
-local time = require("time-tracker.nvim.time")
-local tracker = require("time-tracker.nvim.time")
+local proc = require("time-tracker.nvim.procedure")
 
-local M = {}
+local M = {
+    nid = vim.api.nvim_create_namespace("time-tracker.nvim.namespace")
+}
+local main_proc = proc:new()
 
 vim.on_key(function()
-
+    main_proc:debounce_timer()
 end,
-0)
+M.nid)
 
 return M
