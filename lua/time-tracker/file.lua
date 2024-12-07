@@ -22,11 +22,10 @@ M.path_sep = native_separator()
 function M.grab_or_create_file()
     local filepath = M.data_path .. M.path_sep .. tracker_file
     local f = Path:new(filepath)
-    if f ~= nil then
-        return f
-    else
-        vim.notify("could not open data file for time-tracker.nvim", vim.log.levels.ERROR)
+    if not f:exists() then
+        f:touch()
     end
+    return f
 end
 
 -- Write the given object to the tracker file.
