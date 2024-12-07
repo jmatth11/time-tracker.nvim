@@ -1,3 +1,5 @@
+local Path = require("plenary.path")
+
 local M = {}
 
 -- tracker file for persisting user data
@@ -19,7 +21,7 @@ M.path_sep = native_separator()
 -- @returns File object
 function M.grab_or_create_file()
     local filepath = M.data_path .. M.path_sep .. tracker_file
-    local f = io.open(filepath, "r+")
+    local f = Path:new(filepath)
     if f ~= nil then
         return f
     else
@@ -42,7 +44,7 @@ end
 function M.read_tracker_file()
     local f = M.grab_or_create_file()
     if f ~= nil then
-        local data = f:read("*a")
+        local data = f:read()
         -- decode file and change JSON nulls to Lua's nils for objects and arrays
         local obj = nil
         -- data will be empty on initial file creation
