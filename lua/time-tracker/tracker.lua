@@ -26,13 +26,18 @@ end
 
 local function check_today_tracker(today)
     local time = os.date()
+    local obj = today or {
+        initial_time = time,
+        total = 0,
+        active = 0,
+    }
     -- reset day if it's a different day
-    if not compare_date(today.initial_time, time) then
-        today.initial_time = time
-        today.total = 0
-        today.active = 0
+    if not compare_date(obj.initial_time, time) then
+        obj.initial_time = time
+        obj.total = 0
+        obj.active = 0
     end
-    return today
+    return obj
 end
 
 -- Load data from the tracker file
