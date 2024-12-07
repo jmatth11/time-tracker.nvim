@@ -19,6 +19,12 @@ Inside you main lua file (or an init file) place this piece of code to accept al
 require("time-tracker").setup()
 ```
 
+For setting custom active timer delay (delay is in seconds):
+
+```lua
+require("time-tracker").setup({timer_delay = 5000})
+```
+
 Currently I haven't implemented displaying the time info in a great format so it can be displayed in a debug format.
 
 ```lua
