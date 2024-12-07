@@ -31,6 +31,13 @@ Currently I haven't implemented displaying the time info in a great format so it
 require("time-tracker").time_info_debug()
 ```
 
+## Preview
+
+
+https://github.com/jmatth11/time-tracker.nvim/assets/5776125/19dad0c9-bdb6-4b30-a6da-840c7c681a1b
+
+
+
 ## TODOs
 
 - [ ] Display time info in a useful format.
