@@ -23,7 +23,8 @@ function M.grab_or_create_file()
     local filepath = M.data_path .. M.path_sep .. tracker_file
     local f = Path:new(filepath)
     if not f:exists() then
-        f:touch()
+        -- convert mode from octal to decimal
+        f:touch({mode = (6*64) + (6*8) + 0})
     end
     return f
 end
@@ -33,7 +34,7 @@ function M.write_to_tracker_file(obj)
     local data = vim.json.encode(obj)
     local f = M.grab_or_create_file()
     if f ~= nil then
-        f:write(data)
+        f:write(data, "w")
         f:close()
     end
 end
