@@ -3,7 +3,7 @@ local time = require("time-tracker.time")
 local M = {}
 
 -- timer delay set to 5 minute
-local timer_delay = 1000 * 60 * 5
+local timer_delay = 1000 * 60 * 2
 
 function M:new(o)
     local obj = o or { timer = nil, timer_delay = timer_delay }

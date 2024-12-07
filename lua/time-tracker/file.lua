@@ -34,7 +34,6 @@ function M.read_tracker_file()
     local f = M.grab_or_create_file()
     if f ~= nil then
         local data = f:read("*a")
-        print(vim.inspect(data))
         -- decode file and change JSON nulls to Lua's nils for objects and arrays
         local obj = nil
         if data ~= "" then

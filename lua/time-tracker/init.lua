@@ -1,7 +1,10 @@
 local proc = require("time-tracker.procedure")
 
+local namespace = "time-tracker.nvim.namespace"
+local autogroup = "time-tracker.nvim.group"
+
 local M = {
-    nid = vim.api.nvim_create_namespace("time-tracker.nvim.namespace")
+    nid = vim.api.nvim_create_namespace(namespace)
 }
 local main_proc = proc:new()
 
@@ -23,6 +26,13 @@ function M.setup(opts)
         main_proc:debounce_timer()
     end,
     M.nid)
+    vim.api.nvim_create_augroup(autogroup, {clear = true})
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+        group = autogroup,
+        callback = function()
+            main_proc:update()
+        end
+    })
 end
 
 return M
