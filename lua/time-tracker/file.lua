@@ -18,7 +18,8 @@ M.path_sep = native_separator()
 -- Grab or creeate the user data file.
 -- @returns File object
 function M.grab_or_create_file()
-    local f = io.open(M.data_path .. M.path_sep .. tracker_file, "r+")
+    local filepath = M.data_path .. M.path_sep .. tracker_file
+    local f = io.open(filepath, "r+")
     if f ~= nil then
         return f
     else
