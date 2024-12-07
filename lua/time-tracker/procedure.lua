@@ -7,7 +7,7 @@ local timer_delay = 1000 * 60 * 2
 
 -- Create a new procedure object to manage time tracking.
 function M:new(o)
-    local obj = o or { timer = nil, timer_delay = timer_delay }
+    local obj = o or { timer = nil, timer_delay = timer_delay, silent = true }
     self.__index = self
     return setmetatable(obj, self)
 end
@@ -26,7 +26,9 @@ function M:debounce_timer()
     -- (re)create and start timer
     self.timer = vim.defer_fn(function()
         tracker.set_inactive()
-        vim.notify("inactive")
+        if not self.silent then
+            vim.notify("inactive")
+        end
     end, self.timer_delay)
 end
 

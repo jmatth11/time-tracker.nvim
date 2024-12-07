@@ -31,6 +31,9 @@ function M.setup(opts)
         if opts["timer_delay"] ~= nil then
             main_proc.timer_delay = opts.timer_delay
         end
+        if opts["silent"] ~= nil then
+            main_proc.silent = opts.silent
+        end
     end
     -- listen for every key press so we can debounce the update function
     vim.on_key(function()
@@ -45,6 +48,8 @@ function M.setup(opts)
             main_proc:update()
         end
     })
+    -- start the timer
+    main_proc:debounce_timer()
 end
 
 return M
