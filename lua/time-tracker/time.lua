@@ -1,5 +1,6 @@
 local M = {}
 
+-- Safe gaurd against divide by zero
 local function safe_divide(value, div)
     if value >= 1 then
         return value/div
@@ -7,6 +8,17 @@ local function safe_divide(value, div)
     return 0
 end
 
+-- Convert time elapsed into useful time info.
+-- @params Time elapsed in seconds
+-- @returns Table
+--      {
+--          sec,
+--          min,
+--          hr,
+--          day,
+--          week,
+--          yr
+--      }
 function M.extract_time_info(t)
     local sec = t
     local min = safe_divide(sec, 60)
