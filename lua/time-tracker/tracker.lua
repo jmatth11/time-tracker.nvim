@@ -13,7 +13,8 @@ local M = {
             initial_time = loaded_time,
             total = 0,
             active = 0,
-        }
+        },
+        last_saved = nil,
     },
     last_total = loaded_time,
     last_active = loaded_time,
@@ -53,6 +54,11 @@ end
 
 -- Save data to the tracker file
 function M.save_data()
+    local old_data = file.read_tracker_file();
+    if old_data ~= nil and old_data.last_save ~= nil and old_data.last_save > M.data.last_save then
+      M.load_data()
+    end
+    M.data.last_saved = os.time()
     file.write_to_tracker_file(M.data)
 end
 
